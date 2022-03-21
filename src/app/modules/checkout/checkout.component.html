@@ -1,0 +1,104 @@
+
+
+
+
+<mat-horizontal-stepper  #stepper>
+        <mat-step label="Login as guest">
+          <mat-tab-group>
+              <mat-tab label="Login">
+                  <div>
+                      <form (ngSubmit)="generateLoginOtp(loginForm.value)" [formGroup]="loginForm" >
+                          <mat-form-field appearance="outline">
+                              <mat-label>Enter Phone Number </mat-label>
+                              <input formControlName="contact" matNativeControl matInput>
+                              <!-- <mat-error *ngIf="phone.invalid">{{ getErrorMessage() }}</mat-error> -->
+                          </mat-form-field>
+                          <button type="submit" [disabled]="!loginForm.valid"  mat-button color="primary">Submit</button>
+                      </form>
+                      <div *ngIf="showForm">
+                          <form [formGroup]="optVerify">
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Enter OTP </mat-label>
+                                  <input formControlName="otp" matNativeControl matInput>
+                              </mat-form-field>
+                              <button type="submit" [disabled]="!optVerify.valid"  (click)="submitOtpLogin(optVerify.value,stepper)" mat-button color="primary">Verifty</button>
+                          </form>
+                      </div>        
+                  </div>
+              </mat-tab>
+              <mat-tab label="Sign Up"> 
+                  <ng-template matTabContent>
+                      <div>
+                          <form (ngSubmit)="generatRegisterOtp(rGenerate.value)" [formGroup]="rGenerate">
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Enter Phone Number </mat-label>
+                                  <input formControlName="contact" matNativeControl matInput>
+                                  <!-- <mat-error *ngIf="phone.invalid">{{ getErrorMessage() }}</mat-error> -->
+                              </mat-form-field>
+                              <button type="submit" [disabled]="!rGenerate.valid" mat-button color="primary">Submit</button>
+                          </form>
+                      </div>
+                      <div *ngIf="showForm">
+                          <form (ngSubmit)="resgister(resgisterUser.value,stepper)" [formGroup]="resgisterUser">
+                              <input type="hidden" formControlName="contact">
+                              <div fxLayout="row" fxLayout.xs="column">
+                                  <mat-form-field appearance="outline">
+                                      <mat-label>Full Name </mat-label>
+                                      <input formControlName="full_name" matNativeControl matInput>
+                                      <!-- <mat-error *ngIf="firstname.error">{{getErrorMessage()}}</mat-error> -->
+                                  </mat-form-field>
+                              </div>
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Refer Code</mat-label>
+                                  <input formControlName="reference_code" matNativeControl matInput>
+                                  <!-- <mat-error *ngIf="phone.invalid">{{ getErrorMessage() }}</mat-error> -->
+                              </mat-form-field>
+                              <mat-form-field appearance="outline">
+                                  <mat-label>Enter OTP </mat-label>
+                                  <input formControlName="otp" matNativeControl matInput>
+                              </mat-form-field>
+                              <button type="submit" [disabled]="!resgisterUser.valid" mat-stroked-button color="primary">Submit</button>
+                          </form>
+                      </div> 
+                  </ng-template>
+              </mat-tab>
+          </mat-tab-group>
+          <!-- <div *ngIf="showOtpForm">
+              <form [formGroup]="optVerify">
+               
+                  <button type="submit" [disabled]="!optVerify.valid"  (click)="submitOtp(optVerify.value,stepper)" mat-button color="primary">Verifty</button>
+              </form>
+          </div>     -->
+        </mat-step>
+        <mat-step label="Delivery Details">
+          <form (ngSubmit)="submitAddress(address.value)" [formGroup]="address">
+              <!-- <input type="hidden" formControlName="id" value="123"> -->
+            <mat-form-field appearance="outline">
+                <mat-label>Door / Flat#</mat-label>
+                <input formControlName="addressline1" matNativeControl matInput>
+                <!-- <mat-error *ngIf="phone.invalid">{{ getErrorMessage() }}</mat-error> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Landmark</mat-label>
+                <input formControlName="addressline2" matNativeControl matInput>
+                <!-- <mat-error *ngIf="phone.invalid">{{ getErrorMessage() }}</mat-error> -->
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Delivery Date</mat-label>
+                <input formControlName="deliveryDate" [matDatepicker]="deliveryDate" [min]="minDate" [max]="maxDate" matInput>
+                <mat-datepicker-toggle matSuffix [for]="deliveryDate"></mat-datepicker-toggle>
+                <mat-datepicker #deliveryDate></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+            <mat-label>Delivery Time</mat-label>
+              <!-- <input (click)="selectTime($event)" formControlName="delivery_time" type="time" matNativeControl matInput> -->
+              <input [ngxTimepicker]="picker" formControlName="delivery_time" [min]="minTime" [max]="maxTime" matNativeControl matInput> <ngx-material-timepicker #picker></ngx-material-timepicker>
+          </mat-form-field>
+            <button type="submit" [disabled]="!address.valid" matStepperNext mat-button color="primary">Next</button>
+          </form>
+        </mat-step>
+        <!-- <mat-step label="Payments">
+          Content 3
+          <button id="paymentButton" (click)="sendOrderAndRedirect()" mat-button> Pay </button>
+        </mat-step> -->
+      </mat-horizontal-stepper>

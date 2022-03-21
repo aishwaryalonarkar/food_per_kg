@@ -1,0 +1,76 @@
+.btn-span
+{
+    width: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border:none;
+    background-color: white;
+    text-align: center;
+    margin-right: 5px;
+    margin-top: 1px;
+}
+.btn-span-xs
+{
+    // width: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border:none;
+    background-color: white;
+    text-align: center;
+    margin-right: 5px;
+    margin-top: 1px;
+    width:40px;
+}
+.quant-btn-xs
+{
+    width:130px;
+    border-radius: 25px;
+    border: 2px solid rgb(158, 155, 155);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    align-content: center;
+    height: 35px;
+}
+
+// .quant-btn:hover .btn-span-xs, .quant-btn:hover
+// {
+//     background: rgb(214, 206, 206);
+// }
+.quant-btn:hover
+{
+    border: 2px solid  rgb(0, 119, 255);
+}
+.quant-btn
+{
+    width:130px;
+    border-radius: 25px;
+    border: 2px solid rgb(158, 155, 155);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    align-content: center;
+    height: 35px;
+}
+
+.quant-btn1
+{
+    display: inline-block;
+}
+
+.variant-div
+{
+    font-family: cursive;
+}
+
+.img-icon
+{
+    width: 20px;
+    height: 20px;
+    margin-top: 15px;
+}
+
+.container
+{
+    margin-bottom: 50px;
+}

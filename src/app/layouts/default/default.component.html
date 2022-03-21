@@ -1,0 +1,15 @@
+<app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
+
+ <div *ngIf="router.url==='/'" style="background: #cee6f0;"><app-menu-header ></app-menu-header></div>
+<mat-drawer-container>
+    <mat-drawer mode="side" [opened]="sideBarOpen">
+        <app-sidebar></app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content>
+        <notifier-container></notifier-container>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+
+<!-- <app-footer></app-footer> -->

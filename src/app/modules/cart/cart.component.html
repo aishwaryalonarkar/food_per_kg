@@ -1,0 +1,97 @@
+<div class=container>
+<div fxLayout="column" fxLayoutAlign="space-between center">
+    <mat-card>
+        <mat-card-title>Order Summary</mat-card-title>
+        <div class="cart-div" *ngFor="let cartItem of cartItem; index as i" fxLayoutAlign="space-around none" fxLayout="column">
+        
+            <!-- <div matLine>{{ cartItem.dish }}</div> -->
+
+            <div fxLayout="row"  fxShow.xs="false">
+                <div *ngIf="cartItem.foodType=='veg'"><img class="img-icon" src="../../../assets/img/icons/veg.png"></div>
+                <div *ngIf="cartItem.foodType=='non-veg'"><img class="img-icon" src="../../../assets/img/icons/non-veg.png"></div>
+                <button mat-button style="width:220px;">{{cartItem.dish}}</button>
+                
+                <div class="quant-btn">
+                    <div class="quant-btn1">
+                    <button mat-icon-button>
+                        <mat-icon color="primary" (click)="changeQuant('decrease',cartItem)">remove</mat-icon>
+                    </button>
+                    <button class="btn-span-xs"><b>{{cartItem.itemVolume}}&nbsp;{{cartItem.itemVolumeType}}</b></button>
+                    <!-- <button class="btn-span"><b>{{cartItem.itemVolume}} {{cartItem.itemVolumeType}}</b></button> -->
+                    <button mat-icon-button>
+                        <mat-icon color="primary" (click)="changeQuant('increase',cartItem)">add</mat-icon>
+                    </button>
+                    </div>
+                </div>
+                <!-- <button mat-button>{{cartItem.itemVolumeType}}</button> -->
+                <button mat-button style="width:20px; margin-left: 40px;">&#8377;&nbsp;{{cartItem.cost}}</button>
+                <button mat-button color="warn" style="float: right; margin-left: 30px;" (click)="Remove(i)"><mat-icon>delete_forever</mat-icon></button>
+                <mat-divider></mat-divider>
+            </div>
+
+            <div fxLayout="column"  fxShow.gt-xs="false" >
+                <div class="row">
+                    <div *ngIf="cartItem.foodType=='veg'"><img class="img-icon" src="../../../assets/img/icons/veg.png"><span style="margin-left:10px;">{{cartItem.dish}}</span></div>
+                    <div *ngIf="cartItem.foodType=='non-veg'"><img class="img-icon" src="../../../assets/img/icons/non-veg.png"><span style="margin-left:10px;">{{cartItem.dish}}</span></div>
+                </div>
+                <div fxLayout="row">
+                    <div class="quant-btn-xs">
+                        <div class="quant-btn1">
+                        <button mat-icon-button>
+                            <mat-icon color="primary" (click)="changeQuant('decrease',cartItem)">remove</mat-icon>
+                        </button>
+                        <button class="btn-span-xs"><b>{{cartItem.itemVolume}}{{cartItem.itemVolumeType}}</b></button>
+                        <button mat-icon-button>
+                            <mat-icon color="primary" (click)="changeQuant('increase',cartItem)">add</mat-icon>
+                        </button>   
+                        </div>
+                    </div>
+                <!-- <button mat-button></button> -->
+                    <button mat-button style="width:20px;">&#8377;&nbsp;{{cartItem.cost}}</button>
+                    <button mat-button color="warn" (click)="Remove(i)"><mat-icon>delete_forever</mat-icon></button>
+                </div>
+                <mat-divider></mat-divider>
+                <div fxLayout="column">
+
+                </div>
+            </div>    
+
+            <div fxLayout="row" style="margin-left: 80px; color:grey"  fxShow.xs="false">
+                <div matLine class="cart-div" *ngIf="cartItem.selectedVariant">
+                    {{ cartItem.selectedVariant }} &nbsp;
+                </div>
+                <div *ngIf="cartItem.selectedVariant && cartItem.selectedVariation"><b>| &nbsp;</b></div>
+                <div matLine class="cart-div" *ngIf="cartItem.selectedVariation">
+                    {{cartItem.selectedVariation.name}}-{{cartItem.selectedVariation.price}}
+                </div>
+            </div>
+
+            <div fxLayout="row" style="margin-left: 20px; color:grey " fxShow.gt-xs="false">
+                <div matLine class="cart-div" *ngIf="cartItem.selectedVariant">
+                    {{ cartItem.selectedVariant }} &nbsp;
+                </div>
+                <div matLine class="cart-div" *ngIf="cartItem.selectedVariation">
+                    {{cartItem.selectedVariation.name}}-{{cartItem.selectedVariation.price}}
+                </div>
+            </div>
+
+        </div> 
+        <mat-divider></mat-divider>          
+        <mat-list>
+            <button mat-button style="margin-left: 20px;"><b>Sub-Total:</b></button>
+            <button mat-button color="primary" style="float: right; margin-right: 64px; width:60px">&#8377;&nbsp;{{ sub_total }}</button>
+        </mat-list> 
+        <!-- <mat-divider></mat-divider>   -->
+        <mat-list>
+            <button mat-button style="margin-left: 20px;"><b>Taxes:</b></button>
+            <button mat-button color="primary" style="float: right; margin-right: 64px; width:60px">&#8377;&nbsp;{{tax}}</button>
+        </mat-list>   
+        <!-- <mat-divider></mat-divider>   -->
+        <mat-list>
+            <button mat-button style="margin-left: 20px;"><b>Total:</b></button>
+            <button mat-button color="primary" style="float: right; margin-right: 64px; width:60px">&#8377;&nbsp;{{ total }}</button>
+        </mat-list> 
+    <button mat-raised-button color="primary" (click)="sendJson()" style="float: right;width: 100%;">Checkout</button>     
+    </mat-card>
+</div>
+</div>

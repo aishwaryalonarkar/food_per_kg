@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button fxShow.gt-xs="false"  mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <img style="height: 50px; margin-right:10px" src="../../../../assets/img/logo/logo.png">
+        <span>Food Per KG </span>
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row" fxLayoutGap="20px">
+
+                <div fxShow.lt-sm="false">
+                    <li>
+                        <a routerLink="/home">Home</a>
+                        <a routerLink="/">Menu</a>
+                    </li>
+                </div>
+
+                <li>
+                    <button routerLink="/cart" mat-icon-button>
+                        <mat-icon  [(matBadge)]="matBadge" matBadgeColor="warn">shopping_basket</mat-icon>
+                    </button>
+                </li>
+                <!-- <li>
+                    <button mat-icon-button>
+                        <mat-icon  matBadgePosition="before"  matBadge="15" matBadgeColor="warn">shopping_basket</mat-icon>
+                    </button>
+                </li> -->
+            </ul>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,50 @@
+<!-- <div fxLayout="row" fxLayoutAlign="space-evenly none"  fxLayout.xs="row" fxLayout.sm="row"> -->
+<div class="menu-header-div" fxLayout="row" fxShow.xs="false" fxLayoutAlign="start left" fxLayout.xs="row" fxFill.xs fxLayoutAlign.xs="start space-around" fxLayout.sm="column">
+<!-- <div fxLayout="row" fxLayoutAlign="start left" fxLayoutAlign.sm="space-evenly center"> -->
+    <span class="mat-slide-toggle-label" fxFlex="20">
+        <label class="slide-label" for="slideToggle">Veg</label> 
+        <mat-slide-toggle (change)="FilterDishes('foodType',$event.checked)"></mat-slide-toggle>
+        <label for="slideToggle">Non Veg</label>
+    </span>
+    <span class="mat-slide-toggle-label" fxFlex="20">
+        <label class="slide-label" for="slideToggle">Indian</label> 
+        <mat-slide-toggle (change)="FilterDishes('cuisineType',$event.checked)"></mat-slide-toggle>
+        <label for="slideToggle">Chinese</label>
+    </span>
+
+    <div>
+    <span fxFlexAlign="center" >
+        <mat-button-toggle-group *ngFor="let cate of categoryFilter" name="foodCategory" aria-label="Food Category">
+            <button *ngIf="cate.category==category" mat-raised-button color="primary" (click)="FilterDishes('category',cate.category)" [value]="cate.category">{{cate.category}}</button>
+            <button *ngIf="cate.category!=category" mat-raised-button (click)="FilterDishes('category',cate.category)" [value]="cate.category">{{cate.category}}</button>
+        </mat-button-toggle-group>
+    </span>
+    </div>
+    </div>
+
+    <!-- <div>{{category}}</div> -->
+
+    
+    <div fxLayout="column" fxShow.gt-xs="false" fxLayoutAlign="space-around center">
+            <!-- <div fxLayout="row" fxLayoutAlign="start left" fxLayoutAlign.sm="space-evenly center"> -->
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <span class="mat-slide-toggle-label">
+                <label class="slide-label-xs" for="slideToggle">Veg</label> 
+                <mat-slide-toggle (change)="FilterDishes('foodType',$event.checked)"></mat-slide-toggle>
+                <label for="slideToggle">Non-Veg</label>&nbsp;<b>|</b>
+            </span>
+            <span class="mat-slide-toggle-label">
+                <label class="slide-label-xs" for="slideToggle">Indian</label> 
+                <mat-slide-toggle (change)="FilterDishes('cuisineType',$event.checked)"></mat-slide-toggle>
+                <label for="slideToggle">Chinese</label>
+            </span>
+        </div>
+        <mat-form-field>
+            <mat-label>{{category}}</mat-label>
+            <mat-select (selectionChange)="FilterDishes('category',$event.value)">
+                <mat-option *ngFor="let category of categoryFilter" [value]="category.category">
+                        {{category.category}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
